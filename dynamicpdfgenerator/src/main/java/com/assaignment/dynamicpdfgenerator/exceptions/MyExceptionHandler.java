@@ -20,8 +20,13 @@ public class MyExceptionHandler {
 		Map<String ,String> map=new HashMap<>();
 		ex.getBindingResult().getFieldErrors().forEach( error -> map.put(error.getField(),error.getDefaultMessage())
 				);
-		return new ResponseEntity<Map<String, String>>(map,HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
 		
 	}
-
+	@ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<String> handleRuntimeExceptions(RuntimeException ex) {
+        System.err.println("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        return ResponseEntity.internalServerError().body("An error occurred while processing your request.");
+    }
 }
