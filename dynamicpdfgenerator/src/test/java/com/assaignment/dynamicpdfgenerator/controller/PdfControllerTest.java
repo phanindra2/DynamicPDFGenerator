@@ -67,19 +67,19 @@ class PdfControllerTest {
     }
     //thi test case passes and throws run time exception 
 
-//    @Test
-//    void testGeneratePDF_AnyRunTimeExceptionOccours() throws Exception {
-//        // Simulate an error in the service
-//        when(pdfService.generateOrRetrievePDF(any(Invoice.class))).thenThrow(new RuntimeException("PDF generation failed"));
-//
-//        // Perform POST request
-//        ResultActions result = mockMvc.perform(post("/api/invoice/generate")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(asJsonString(request)));
-//
-//        // Assert that the response status is Internal Server Error
-//        result.andExpect(status().isInternalServerError());
-//    }
+    @Test
+    void testGeneratePDF_AnyRunTimeExceptionOccours() throws Exception {
+        // Simulate an error in the service
+        when(pdfService.generateOrRetrievePDF(any(Invoice.class))).thenThrow(new RuntimeException("PDF generation failed"));
+
+        // Perform POST request
+        ResultActions result = mockMvc.perform(post("/api/invoice/generate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(request)));
+
+        // Assert that the response status is Internal Server Error
+        result.andExpect(status().isInternalServerError());
+    }
     @Test
     void testGeneratePDF_InvalidRequest() throws Exception {
         // Make request invalid by setting an empty seller name

@@ -55,7 +55,7 @@ public class PdfService {
             return filePath;
 
         } catch (Exception e) {
-            logger.error("Error generating PDF", e);
+            logger.error("Error generating PDF");
             throw new RuntimeException("Error while creating PDF :",e);
         }
     }

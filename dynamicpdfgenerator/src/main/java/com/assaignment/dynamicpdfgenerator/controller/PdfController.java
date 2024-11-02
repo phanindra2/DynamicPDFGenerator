@@ -60,7 +60,7 @@ public class PdfController {
                     .body(resource);
 
         } catch (Exception e) {
-            logger.error("Exception occurred while generating PDF", e);
+            logger.error("Exception occurred while generating PDF");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(null);
         }
